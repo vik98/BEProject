@@ -1,0 +1,92 @@
+.nav-wrapper {
+    background-color: black;
+}
+
+.page-footer {
+    background-color: black;
+}
+
+nav {
+    position: fixed;
+}
+
+table {
+    width: 70%;
+}
+
+h1 {
+    color: black;
+}
+
+nav ul li:hover {
+    background-color: gray;
+}
+
+nav .nav-wrapper .brand-logo img {
+    height: 58px;
+    margin-top: 2px;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-image: url("bg.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+kbd {
+    color: black;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.input-field input[type=date]:focus+label,
+.input-field input[type=text]:focus+label,
+.input-field input[type=email]:focus+label,
+.input-field input[type=password]:focus+label {
+    color: #e91e63;
+}
+
+.input-field input[type=date]:focus,
+.input-field input[type=text]:focus,
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+    border-bottom: 2px solid #e91e63;
+    box-shadow: none;
+}
+
+@media screen and (min-width:1024px) {
+    .brand-logo {
+        margin-left: 2%;
+    }
+
+    .brand-logo img {
+        margin-left: 200px;
+    }
+
+    nav .nav-wrapper ul {
+        padding-right: 200px;
+    }
+}
+
+@media (max-width: 1024px) {
+    nav .nav-wrapper .brand-logo img {
+        height: 50px;
+    }
+}
+#mapid { height: 180px; }

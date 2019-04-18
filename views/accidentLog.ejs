@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Accident</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo">Driver Analytics</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/">DashBoard</a></li>
+                        <li><a href="/alcohol">Alcohol</a></li>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="/">DashBoard</a></li>
+                <li><a href="/alcohol">Alcohol</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+
+    </header>
+
+    <main>
+        <center>
+            <h1>Welcome to the Accident Log page</h1>
+            <p>You can view the accident logs on this page. Furthermore, the data<br> is also displayed
+                to
+                enhance the user interface.</p>
+            <table class="table table-hover centered" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Latitude</th>
+                        <th>Longitude</th>
+                        <th>Cars Involved</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <%for(var i=0;i<data.length;i++){%>
+                    <tr>
+                        <td id="date"><%=data[i].date%></td>
+                        <td id="time"><%=data[i].time%></td>
+                        <td id="lat"><%=data[i].latitude%></td>
+                        <td id="lon"><%=data[i].longitude%></td>
+                        <td id="cars"><%=data[i].cars[0]%>, <%=data[i].cars[1]%> </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+
+        </center>
+    </main>
+    <br><br>
+
+    <footer class="page-footer" style="background-color: black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Driver Analytics</h5>
+                    <p class="grey-text text-lighten-4">This website is a part of the final year project created by us
+                        with the
+                        topic "Accident Prevention, Detection and Analytics" under the guidance of Prof. Sarika Davare
+                    </p>
+                    <p class="grey-text text-lighten-4">Copyrights @2018 Driver Analytics</p>
+                </div>
+                <div class="col l2 offset-l2 s6">
+                    <h6>About</h6>
+                    <ul>
+                        <li><a href="" class="grey-text text-lighten-3">Help</a></li>
+                        <li><a href="" class="grey-text text-lighten-3">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col l2 s6">
+                    <h6>Career</h6>
+                    <ul>
+                        <li><a href="" class="grey-text text-lighten-3">Engineer</a></li>
+                        <li><a href="" class="grey-text text-lighten-3">Site Manager</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/javascripts/plot.js"></script>
+    <script src="/javascripts/gauge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+    </script>
+    <!-- <script src="/javascripts/accident.js"></script> -->
+</body>
+
+</html>
