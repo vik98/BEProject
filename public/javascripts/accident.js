@@ -118,6 +118,21 @@ var circle = L.circle([19.050043, 72.940155], {
 }).addTo(mymap);
 
 
+// var polyline = L.polyline([
+//     [19.026027, 72.885721],
+//     [19.050043, 72.940155],
+//     [19.083069, 72.834404],
+//     [19.025703, 72.855844]
+//     ],
+//     {
+//         color: 'red',
+//         weight: 10,
+//         opacity: .7,
+//         dashArray: '20,15',
+//         lineJoin: 'round'
+//     }
+//     ).addTo(mymap);
+
 function onMapClick(e) {
     alert("You clicked the map at " + e.latlng);
 }
@@ -132,3 +147,4 @@ function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
+

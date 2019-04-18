@@ -79,6 +79,25 @@ app.get("/accidentLog", function(req, res){
     })
 })
 
+app.get("/accidentRegister", function(req, res){
+    res.render("accidentRegister")
+});
+
+app.post("/accidentRegister", function(req, res){
+    const obj = {
+        date:req.body.date,
+        time:req.body.time,
+        latitude: req.body.lat,
+        flag: true,
+        longitude: req.body.lon,
+        cars: req.body.cars 
+    }
+    new accidents(obj).save(function(err, data){
+        console.log(data);
+        res.redirect("accidentLog");
+    })
+});
+
 io.sockets.on('connection', function (socket) {
     console.log(" connected");
 

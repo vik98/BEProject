@@ -46,33 +46,48 @@
 
     <main>
         <center>
-            <h1>Welcome to the Accident Log page</h1>
-            <p>You can view the accident logs on this page. Furthermore, the data<br> is also displayed
+            <h1>Welcome to the Accident Registration page</h1>
+            <p>You can register accidents on this page. Furthermore, the data<br> is also displayed
                 to
                 enhance the user interface.</p>
-            <table class="table table-hover centered" id="myTable">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Latitude</th>
-                        <th>Longitude</th>
-                        <th>Cars Involved</th>
-                    </tr>
-                </thead>
+            <div class="row">
+                <form class="col s12 m4 l8 centered" method="POST" action="/accidentRegister">
 
-                <tbody>
-                    <%for(var i=0;i<data.length;i++){%>
-                    <tr>
-                        <td id="date"><%=data[i].date%></td>
-                        <td id="time"><%=data[i].time%></td>
-                        <td id="lat"><%=data[i].latitude%></td>
-                        <td id="lon"><%=data[i].longitude%></td>
-                        <td id="cars"><%=data[i].cars%> </td>
-                    </tr>
-                    <%}%>
-                </tbody>
-            </table>
+                    <div class="row ">
+                        <div class="input-field col s6 push-s6">
+                            <input id="date" type="text" data-length="10" name="date">
+                            <label for="date">Date</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="input-field col s6 push-s6">
+                            <input id="time" type="text" data-length="10" name="time">
+                            <label for="time">Time (HH:MM:SS)</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="input-field col s6 push-s6">
+                            <input id="lat" type="text" data-length="10" name="lat">
+                            <label for="lat">Latitude</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="input-field col s6 push-s6">
+                            <input id="lon" type="text" data-length="10" name="lon">
+                            <label for="lon">Longitude</label>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="input-field col s6 push-s6">
+                            <input id="cars" type="text" data-length="10" name="cars">
+                            <label for="cars">Cars Involved (Seperated by ,)</label>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light col s6 push-s6" type="submit" >Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </form>
+            </div>
 
         </center>
     </main>

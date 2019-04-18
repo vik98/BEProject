@@ -6,9 +6,7 @@ var accidentSchema = new mongoose.Schema({
     flag: Boolean, 
     latitude: String,
     longitude: String,
-    cars :[{
-        type:String
-    }]
+    cars : String
 });
 
 module.exports = mongoose.model("accidents", accidentSchema);
