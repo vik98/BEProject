@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 var accidents = require("./models/accidents");
+var alcohols = require("./models/alcohols");
 var app = express();
 var server = require("http").createServer(app)
 var io = require('socket.io')(server);
@@ -20,13 +21,12 @@ mongoose.connect("mongodb://vikram:vikram123@ds133275.mlab.com:33275/beproject",
 const obj = {
     date: "18-04-2019",
     time: "13:46",
-    flag: true,
     latitude: "17.02145",
     longitude: "55.45112",
-       cars: ["MH02EF45540", "MH25SD4455"] 
+    registration: "4455" 
 }
 
-// new accidents(obj).save(function(err, data){
+// new alcohols(obj).save(function(err, data){
 //     console.log(data);
 // })
 
@@ -97,6 +97,71 @@ app.post("/accidentRegister", function(req, res){
         res.redirect("accidentLog");
     })
 });
+
+app.post("/accidentMonitor", function(req, res){
+    var result  = JSON.parse(req.body.result)
+    console.log(result);
+    io.sockets.emit('accident', result);
+    const obj = {
+        date:result.date,
+        time:result.time,
+        latitude: result.latitude,
+        flag: true,
+        longitude: result.longitude,
+        cars: result.cars 
+    }
+    new accidents(obj).save(function(err, data){
+        console.log(data);
+        res.sendStatus(200);
+    })
+    
+})
+
+app.get("/alcohol", function(req, res){
+    res.render("alcohol")
+})
+
+app.get("/alcoholLog", function(req, res){
+    alcohols.find({}, function(err, data){
+        console.log(data);
+        res.render("alcoholLog", {data:data});
+    })
+})
+
+app.get("/alcoholRegister", function(req, res){
+    res.render("alcoholRegister");
+});
+
+app.post("/alcoholRegister", function(req, res){
+    const obj = {
+        date:req.body.date,
+        time:req.body.time,
+        latitude: req.body.lat,
+        longitude: req.body.lon,
+        registration: req.body.registration
+    }
+    new alcohols(obj).save(function(err, data){
+        console.log(data);
+        res.redirect("alcoholLog");
+    })
+});
+
+app.post("/alcoholMonitor", function(req, res){
+    var result  = JSON.parse(req.body.result)
+    console.log(result);
+    io.sockets.emit('alcohol', result);
+    const obj = {
+        date:result.date,
+        time:result.time,
+        latitude: result.latitude,
+        longitude: result.longitude,
+        registration: result.registration
+    }
+    new alcohols(obj).save(function(err, data){
+        console.log(data);
+        res.sendStatus(200);
+    })
+})
 
 io.sockets.on('connection', function (socket) {
     console.log(" connected");

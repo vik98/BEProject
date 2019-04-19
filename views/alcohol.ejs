@@ -30,14 +30,14 @@
                     <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="/">DashBoard</a></li>
-                        <li><a href="/alcohol">Alcohol</a></li>
+                        <li><a href="/accident">Accident</a></li>
                         <li><a href="/login">Login</a></li>
                     </ul>
                 </div>
             </nav>
             <ul class="sidenav" id="mobile-demo">
                 <li><a href="/">DashBoard</a></li>
-                <li><a href="/alcohol">Alcohol</a></li>
+                <li><a href="/accident">Accident</a></li>
                 <li><a href="/login">Login</a></li>
             </ul>
         </div>
@@ -46,19 +46,16 @@
 
     <main>
         <center>
-            <h1>Welcome to the Accident page</h1>
-            <p>You can view the current data from the sensor on this page. Furthermore, the data<br> is also displayed
-                to
-                enhance the user interface.</p>
+            <h1>Welcome to the Alcohol page</h1>
+            <p>Accoring to the drunk driving law, the allowed blood alcohol content(BAC) legal limit is 0.05% or 30mg alcohol in 100ml blood</p>
             <div class="row">
                 <div class="col s12 ">
                     <div class="card ">
                         <div class="card-content black-text">
                             <span class="card-title" id="drivers">00</span>
-                            <h6>Above displayed is the number of active drivers driving cars in the accident prone areas
-                                around the city. Represents
+                            <h6>Above displayed is the number of active drivers driving cars just below the allowed alcohol level. Represents
                                 the approximate
-                                number of cars that can indulge in an accident.</h6>
+                                number of car drivers that can indulge in an accident.</h6>
                         </div>
                     </div>
                 </div>
@@ -69,15 +66,15 @@
                         <div class="card-image">
                             <img src="images/accident1.jpg" height="450" width="450">
                             <span class="card-title" style="color:black; font-size:60px; font-weight: 200">Register an
-                                Accident</span>
+                                Alcohol Complaint</span>
                         </div>
                         <div class="card-content">
-                            <h6>This card represents the accident registering page. Click on the below link to go the
-                                registration page and manually registering an accident
+                            <h6>This card represents the alcohol registering page. Click on the below link to go the
+                                registration page and manually registering an alcohol complaint
                                 page</h6>
                         </div>
                         <div class="card-action">
-                            <a href="/accidentRegister">Register</a>
+                            <a href="/alcoholRegister">Register</a>
                         </div>
                     </div>
                 </div>
@@ -85,16 +82,16 @@
                     <div class="card">
                         <div class="card-image">
                             <img src="images/accident.jpg" height="450" width="450">
-                            <span class="card-title" style="color:black; font-size:60px; font-weight: 200; ">Accident
+                            <span class="card-title" style="color:black; font-size:60px; font-weight: 200; ">Alcohol
                                 Log</span>
                         </div>
                         <div class="card-content">
-                            <h6>This card represents the accident logs page. Click on the below link to go the
-                                accident
-                                log page to view all the previously happened accidents</h6>
+                            <h6>This card represents the alcohol logs page. Click on the below link to go the
+                                alcohol
+                                log page to view all the previously happened alcohol complaints</h6>
                         </div>
                         <div class="card-action">
-                            <a href="/accidentLog">Accident Log</a>
+                            <a href="/alcoholLog">Alcohol Log</a>
                         </div>
                     </div>
                 </div>
@@ -104,8 +101,8 @@
 
             <div id="modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
-                    <h4>Accident has happened. Rush services to the location</h4>
-                    <p>Accident has taken place at the location with the cordinates <span id="lat"></span> and <span id="lon"></span></p>
+                    <h4>Alcohol has been detected. Rush services to the location</h4>
+                    <p>Alcohol over the limit has been detected at the location with the cordinates <span id="lat"></span> and <span id="lon"></span></p>
                     <div id="mapid1" style="height: 500px;"></div>
                 </div>
                 <div class="modal-footer">
@@ -117,7 +114,7 @@
                 <div class="col s12 ">
                     <div class="card ">
                         <div class="card-content black-text">
-                            <span class="card-title " id="drivers">Accident Prone Areas with location</span>
+                            <span class="card-title " id="drivers">Alcohol Incident Prone Areas with location</span>
                             <div id="mapid" style="height: 500px;"></div>
                         </div>
                     </div>
@@ -171,7 +168,7 @@
             $('.modal').modal();
         });
     </script>
-    <script src="/javascripts/accident.js"></script>
+    <script src="/javascripts/alcohol.js"></script>
 </body>
 
 </html>
