@@ -10,7 +10,8 @@ socket.on("drivers", function (data) {
     $("#drivers").text(Math.floor((Math.random() * 100) + 1));
 })
 
-socket.on("alcohol", function (data) {
+
+socket.on("overlimit", function (data) {
     document.getElementById("button").click();
     var mymap1 = L.map('mapid1').setView([data.latitude, data.longitude], 13);
 
