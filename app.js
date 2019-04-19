@@ -121,7 +121,7 @@ app.post("/accidentRegister", function (req, res) {
 
 app.post("/accidentMonitor", function (req, res) {
     var result = JSON.parse(req.body.result)
-    console.log(result);
+    // console.log(result);
     io.sockets.emit('accident', result);
     const obj = {
         date: result.date,
@@ -135,7 +135,6 @@ app.post("/accidentMonitor", function (req, res) {
         console.log(data);
         res.sendStatus(200);
     })
-
 })
 
 app.get("/alcohol", function (req, res) {
