@@ -185,6 +185,10 @@ app.post("/alcoholMonitor", function (req, res) {
     })
 })
 
+app.get("/analytics", function(req, res){
+    res.render("analytics")
+})
+
 io.sockets.on('connection', function (socket) {
     console.log(" connected");
 
