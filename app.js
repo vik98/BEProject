@@ -39,8 +39,8 @@ parser.on('data', function (data) {
         var result = {
             date: "19-04-2019",
             time: "15:20",
-            latitude: "19.163741",
-            longitude: "72.866937",
+            latitude: "19.044292",
+            longitude: "72.820726",
             registration: 1421
         }
         console.log(result);
@@ -188,6 +188,23 @@ app.post("/alcoholMonitor", function (req, res) {
 app.get("/analytics", function(req, res){
     res.render("analytics")
 })
+
+app.get("/fleet", function(req, res){
+    res.render("fleet");
+})
+
+app.post("/fleet", function(req, res){
+    var gps_data = JSON.parse(req.body.key);
+    console.log(typeof gps_data)
+    gps_data.level = (gps_data.level.substring(2,5))/1;
+    gps_data.latitude = gps_data.latitude/100;
+    gps_data.longitude = gps_data.longitude/100; 
+    gps_data.speed = (gps_data.speed.substring(0,4))/1;
+    console.log(gps_data);
+
+    io.sockets.emit("gps_data", gps_data);
+    res.sendStatus(200);
+});
 
 io.sockets.on('connection', function (socket) {
     console.log(" connected");

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Accident</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="/" class="brand-logo">Driver Analytics</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a href="/">DashBoard</a></li>
+                        <li><a href="/accident">Accident</a></li>
+                        <!-- <li><a href="/login">Login</a></li> -->
+                    </ul>
+                </div>
+            </nav>
+            <ul class="sidenav" id="mobile-demo">
+                <li><a href="/">DashBoard</a></li>
+                <li><a href="/accident">Accident</a></li>
+                <!-- <li><a href="/login">Login</a></li> -->
+            </ul>
+        </div>
+
+    </header>
+
+    <main>
+        <center>
+            <h3>Driver. Deval Srivastava</h3>
+            <p>Accoring to the drunk driving law, the allowed blood alcohol content(BAC) legal limit is 0.05% or 30mg
+                alcohol in 100ml blood</p>
+            <div class="row">
+                <div class="col s3 push-s3 ">
+                    <div class="card ">
+                        <div class="card-content black-text">
+                            <span class="card-title">80</span>km/hr
+                            <h4>Speed set by you</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s3 push-s3 ">
+                    <div class="card ">
+                        <div class="card-content black-text">
+                            <span class="card-title" id="speed">00</span>km/hr
+                            <h4>Current speed of driver</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3 push-s3 ">
+                    <div class="card ">
+                        <div class="card-content black-text">
+                            <span class="card-title">500</span>%
+                            <h4>Legal Alcohol Level</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s3 push-s3 ">
+                    <div class="card ">
+                        <div class="card-content black-text">
+                            <span class="card-title" id="level">0.00</span>%
+                            <h4>Alcohol level of Driver</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button data-target="modal1" class="btn modal-trigger" style="visibility:hidden" id="button">Modal</button>
+
+            <div id="modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Sudden Speed Drop. Possibility of an Accident</h4>
+                    <p>Call Deval and confirm. Cordinates <span id="lat"></span> and <span id="lon"></span></p>
+                    <div id="mapid1" style="height: 500px;"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="link">Navigate</a>
+                </div>
+            </div>
+
+            <button data-target="modal2" class="btn modal-trigger" style="visibility:hidden"
+                id="button2">Modal2</button>
+
+            <div id="modal2" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>Alcohol over the limit detected. Inform driver to stop</h4>
+                    <p>Call Deval and confirm. Cordinates <span id="lat"></span> and <span id="lon"></span></p>
+                    <div id="mapid2" style="height: 500px;"></div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="link">Navigate</a>
+                </div>
+            </div>
+
+            <button data-target="modal3" class="btn modal-trigger" style="visibility:hidden"
+                id="button3">Modal3</button>
+
+            <div id="modal3" class="modal">
+                <div class="modal-content">
+                    <h4>Over Speeding Alert</h4>
+                    <p>Your driver Deval Srivastava is ove speeding. </p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">OK</a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6 push-s3 ">
+                    <div class="card ">
+                        <div class="card-content black-text">
+                            <span class="card-title " id="drivers">Current Location of Driver</span>
+                            <div id="mapid" style="height: 500px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </center>
+    </main>
+    <br><br>
+
+    <footer class="page-footer" style="background-color: black">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Driver Analytics</h5>
+                    <p class="grey-text text-lighten-4">This website is a part of the final year project created by us
+                        with the
+                        topic "Accident Prevention, Detection and Analytics" under the guidance of Prof. Sarika Davare
+                    </p>
+                    <p class="grey-text text-lighten-4">Copyrights @2018 Driver Analytics</p>
+                </div>
+                <div class="col l2 offset-l2 s6">
+                    <h6>About</h6>
+                    <ul>
+                        <li><a href="" class="grey-text text-lighten-3">Help</a></li>
+                        <li><a href="" class="grey-text text-lighten-3">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col l2 s6">
+                    <h6>Career</h6>
+                    <ul>
+                        <li><a href="" class="grey-text text-lighten-3">Engineer</a></li>
+                        <li><a href="" class="grey-text text-lighten-3">Site Manager</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/javascripts/plot.js"></script>
+    <script src="/javascripts/gauge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.sidenav').sidenav();
+        });
+        $(document).ready(function () {
+            $('.modal').modal();
+        });
+    </script>
+    <script src="/javascripts/fleet.js"></script>
+</body>
+
+</html>
